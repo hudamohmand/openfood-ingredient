@@ -34,9 +34,9 @@ for cmd in csvcut csvgrep csvformat; do
 done
 
 tmp_matches="$(mktemp)"
-csvcut -c ingredients_text,product_name,code "$CSV" \
-| csvgrep -c ingredients_text -r "(?i)${INGREDIENT}" \
-| csvcut -c product_name,code \
+csvcut -t -c ingredients_text,product_name,code "$CSV" \
+| csvgrep -t -c ingredients_text -r "(?i)${INGREDIENT}" \
+| csvcut -t -c product_name,code \
 | csvformat -T \
 | tail -n +2 \
 | tee "$tmp_matches"
